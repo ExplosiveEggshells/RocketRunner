@@ -9,27 +9,14 @@ public class Player : MonoBehaviour
     public float strafeSpeed = 6f;
     public float spinSpeed = 10;
 
-    
-    private int points;
     private float currentSpinAngle = 0;
 
     private Rigidbody rb;
-
-    public void AddPoints(int count)
-    {
-        Points += count;
-    }
-
-    public void Kill()
-    {
-        // Kill player
-    }
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        Points = 0;
     }
 
     private void FixedUpdate()
@@ -47,7 +34,4 @@ public class Player : MonoBehaviour
 
         playerGFX.Rotate(spinSpeed * Time.deltaTime, 0f, 0f);
     }
-
-    public int Points { get => points; private set => Mathf.Max(value, 0); }
-
 }
