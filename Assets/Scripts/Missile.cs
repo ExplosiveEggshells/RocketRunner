@@ -21,5 +21,13 @@ public class Missile : MonoBehaviour
         transform.Rotate(currentSpinAngle, 0f, 0f);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Killable killableObject = GetComponent<Killable>();
+        if (killableObject != null)
+        {
+            killableObject.TakeDamage(attackStrength);
+        }
+    }
 
 }

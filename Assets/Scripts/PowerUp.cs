@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public int playerLayer;
+    public int missilePoints = 1;
+
     public float flyDirectionChangeSpeed = 1f;
     public float flySpeedAcceleration = 8f;
-
     public float pickUpDistance = 0.5f;
 
     private bool flying = false;
 
     private Transform flyTarget;
+    private PlayerMissiles playerMissiles;
     private Vector3 flyDirection;
     private float flySpeed;
 
@@ -26,6 +27,7 @@ public class PowerUp : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, flyTarget.position) <= pickUpDistance)
         {
+            playerMissiles.AddMissilePoints(missilePoints);
             Destroy(gameObject);
         }
     }
@@ -58,10 +60,15 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!flying && other.gameObject.layer == playerLayer)
+        if (!flying)
         {
-            BeginFlying(other.transform);
-            return;
+            playerMissiles = other.GetComponent<PlayerMissiles>();
+            if (playerMissiles != null)
+            {
+                BeginFlying(other.transform);
+                return;
+            }
         }
+
     }
 }

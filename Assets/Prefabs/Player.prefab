@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerGFX: {fileID: 7993533259663869805}
-  forwardSpeed: 8
-  strafeSpeed: 6
+  forwardSpeed: 20
+  strafeSpeed: 9
   spinSpeed: 50
 --- !u!114 &1323973335307036631
 MonoBehaviour:
@@ -99,6 +99,7 @@ MonoBehaviour:
   missilePrefab: {fileID: 3288784018187353828, guid: 8316846bea1b98f4ab82aafe11cc3c49,
     type: 3}
   missileSpawnDistance: 4
+  missileRootSpinSpeed: 50
 --- !u!1 &7594200751365111551
 GameObject:
   m_ObjectHideFlags: 0

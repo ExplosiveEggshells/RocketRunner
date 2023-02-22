@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
 
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,8 +30,8 @@ public class Player : MonoBehaviour
 
         float horizontalInput = -Input.GetAxisRaw("Horizontal");
 
-        positionDelta.x += strafeSpeed * Time.deltaTime;
-        positionDelta.z += horizontalInput * forwardSpeed * Time.deltaTime;
+        positionDelta.x += forwardSpeed * Time.deltaTime;
+        positionDelta.z += horizontalInput * strafeSpeed * Time.deltaTime;
 
         rb.MovePosition(transform.position + positionDelta);
 
