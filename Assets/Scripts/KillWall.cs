@@ -15,6 +15,7 @@ public class KillWall : MonoBehaviour
         Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)
         {
+            Debug.Log(collision.gameObject);
             player.Die();
         }
         return;

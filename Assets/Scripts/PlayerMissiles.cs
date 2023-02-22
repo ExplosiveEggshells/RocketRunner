@@ -1,8 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Random = UnityEngine.Random;
+
 public class PlayerMissiles : MonoBehaviour
 {
+    public Action<int> MissileCountChanged;
+
     public Transform missileRoot;
     public GameObject missilePrefab;
 
@@ -16,6 +21,25 @@ public class PlayerMissiles : MonoBehaviour
     {
         missilePoints += points;
         SyncMissilesToPoints();
+
+        MissileCountChanged?.Invoke(missilePoints);
+    }
+
+    public void FireMissilesAtKillable(Killable killable)
+    {
+        int cumulativeDamage = 0;
+        
+        for (int i = missileList.Count - 1; i >= 0 && cumulativeDamage < killable.hitPoints; i--)
+        {
+            Missile nextMissile = missileList[i];
+
+            nextMissile.FireAtTarget(killable);
+            cumulativeDamage += nextMissile.attackStrength;
+
+            missileList.RemoveAt(i);
+            missilePoints -= nextMissile.attackStrength;
+            MissileCountChanged?.Invoke(missilePoints);
+        }
     }
 
     private void Awake()

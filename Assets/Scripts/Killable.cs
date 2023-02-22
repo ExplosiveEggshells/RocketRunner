@@ -10,6 +10,11 @@ public class Killable : MonoBehaviour
     {
         hitPoints -= damage;
         hitPointsChanged?.Invoke(damage);
+
+        if (hitPoints <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()

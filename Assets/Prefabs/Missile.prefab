@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3288784018187353829}
   - component: {fileID: 3288784018187350298}
-  - component: {fileID: 3579570811106838732}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -46,21 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6284cbd50cdbcc749ba91398eb5706ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackStrength: 1
   spinSpeed: 100
---- !u!136 &3579570811106838732
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3288784018187353828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.48
-  m_Height: 2.142807
-  m_Direction: 0
-  m_Center: {x: 0.1867981, y: 0, z: 0}
+  flySpeed: 90
+  detonateDistance: 0.5
 --- !u!1001 &3288784018229755207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,22 +94,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1a3186b2b3afb940894e22dfab6cd14,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.70710576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1a3186b2b3afb940894e22dfab6cd14,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1a3186b2b3afb940894e22dfab6cd14,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.70710784
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1a3186b2b3afb940894e22dfab6cd14,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1a3186b2b3afb940894e22dfab6cd14,
         type: 3}
@@ -131,7 +119,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c1a3186b2b3afb940894e22dfab6cd14,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1a3186b2b3afb940894e22dfab6cd14,
         type: 3}
