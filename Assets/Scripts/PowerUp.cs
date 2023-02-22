@@ -26,7 +26,6 @@ public class PowerUp : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, flyTarget.position) <= pickUpDistance)
         {
-            Debug.Log("Picked up " + gameObject.name);
             Destroy(gameObject);
         }
     }
@@ -59,10 +58,8 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hello!");
         if (!flying && other.gameObject.layer == playerLayer)
         {
-            Debug.Log("Goodbye!!");
             BeginFlying(other.transform);
             return;
         }
