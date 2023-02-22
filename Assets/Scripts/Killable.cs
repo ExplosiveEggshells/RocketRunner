@@ -6,10 +6,15 @@ public class Killable : MonoBehaviour
     public Action<int> hitPointsChanged;
     public int hitPoints = 5;
 
+    private void Start()
+    {
+        hitPointsChanged?.Invoke(hitPoints);
+    }
+
     public void TakeDamage(int damage)
     {
         hitPoints -= damage;
-        hitPointsChanged?.Invoke(damage);
+        hitPointsChanged?.Invoke(hitPoints);
 
         if (hitPoints <= 0)
         {

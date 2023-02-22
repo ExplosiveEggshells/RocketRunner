@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerGFX: {fileID: 7993533259663869805}
   forwardSpeed: 20
-  strafeSpeed: 9
+  strafeSpeed: 15
   spinSpeed: 50
 --- !u!114 &1323973335307036631
 MonoBehaviour:

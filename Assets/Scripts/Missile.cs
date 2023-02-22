@@ -21,6 +21,11 @@ public class Missile : MonoBehaviour
         fireTarget = target;
     }
 
+    public void DestroyMissile()
+    {
+        Destroy(gameObject);
+    }
+
     private void Awake()
     {
         currentSpinAngle += Random.Range(0f, 360f);

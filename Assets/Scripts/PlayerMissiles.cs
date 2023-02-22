@@ -25,10 +25,20 @@ public class PlayerMissiles : MonoBehaviour
         MissileCountChanged?.Invoke(missilePoints);
     }
 
+    public void RemoveMissilePoints(int points)
+    {
+        missilePoints -= points;
+        missilePoints = Mathf.Max(0, missilePoints);
+        SyncMissilesToPoints();
+
+
+        MissileCountChanged?.Invoke(missilePoints);
+    }
+
     public void FireMissilesAtKillable(Killable killable)
     {
         int cumulativeDamage = 0;
-        
+
         for (int i = missileList.Count - 1; i >= 0 && cumulativeDamage < killable.hitPoints; i--)
         {
             Missile nextMissile = missileList[i];
@@ -55,11 +65,27 @@ public class PlayerMissiles : MonoBehaviour
 
     private void SyncMissilesToPoints()
     {
-        int missilesToCreate = Mathf.Max(0, missilePoints - missileList.Count);
+        int missilePointsToCreate = missilePoints - missileList.Count;
 
-        for (int i = 0; i < missilesToCreate; i++)
+        if (missilePointsToCreate > 0)
         {
-            CreateMissile();
+            for (int i = 0; i < missilePointsToCreate; i++)
+            {
+                CreateMissile();
+            }
+        }
+        else if (missilePointsToCreate < 0)
+        {
+            int missilePointsToDestroy = Mathf.Abs(missilePointsToCreate);
+
+            for (int i = missileList.Count - 1; i >= 0 && missilePointsToDestroy > 0; i--)
+            {
+                Missile nextMissile = missileList[i];
+                missilePointsToDestroy -= nextMissile.attackStrength;
+
+                missileList.RemoveAt(i);
+                nextMissile.DestroyMissile();
+            }
         }
     }
 

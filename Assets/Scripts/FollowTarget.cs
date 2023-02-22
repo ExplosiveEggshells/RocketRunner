@@ -6,6 +6,7 @@ public class FollowTarget : MonoBehaviour
     public Vector3 offset;
 
     [SerializeField] private bool useAwakeOffset = true;
+    [SerializeField] private bool lookAtTarget = true;
 
     private void Awake()
     {
@@ -20,7 +21,11 @@ public class FollowTarget : MonoBehaviour
         if (followTarget != null)
         {
             transform.position = followTarget.position + offset;
-            transform.LookAt(followTarget, Vector3.up);
+            
+            if (lookAtTarget)
+            {
+                transform.LookAt(followTarget, Vector3.up);
+            }
         }
     }
 }
