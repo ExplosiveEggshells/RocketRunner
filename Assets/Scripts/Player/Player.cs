@@ -4,12 +4,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Transform playerGFX;
+    public Transform PlayerGFXSpinner;
 
     public float forwardSpeed = 8f;
     public float strafeSpeed = 6f;
+    public float strafeAcceleration = 24f;
+
     public float spinSpeed = 10;
+    public float strafeSpinAngle = 30f;
 
     private float currentSpinAngle = 0;
+
+    private float strafeVelocity = 0;
 
     private Rigidbody rb;
 
@@ -30,13 +36,26 @@ public class Player : MonoBehaviour
 
         float horizontalInput = -Input.GetAxisRaw("Horizontal");
 
+        strafeVelocity = Mathf.MoveTowards(strafeVelocity, horizontalInput * strafeSpeed, strafeAcceleration * Time.deltaTime);
+
         positionDelta.x += forwardSpeed * Time.deltaTime;
-        positionDelta.z += horizontalInput * strafeSpeed * Time.deltaTime;
+        positionDelta.z += strafeVelocity *  Time.deltaTime;
 
         rb.MovePosition(transform.position + positionDelta);
 
-        currentSpinAngle += spinSpeed * Time.deltaTime;
+        float accelerationAngle = GetAccelerationRotation();
 
-        playerGFX.Rotate(spinSpeed * Time.deltaTime, 0f, 0f);
+        Vector3 eulerAngles = playerGFX.eulerAngles;
+        eulerAngles.y = accelerationAngle + 180f;
+        eulerAngles.x = accelerationAngle;
+
+        playerGFX.localRotation = Quaternion.Euler(eulerAngles);
+        //PlayerGFXSpinner.Rotate(spinSpeed * Time.deltaTime, 0f, 0f);
+    }
+
+    private float GetAccelerationRotation()
+    {
+        float strafeSpeedPerc = -strafeVelocity / strafeSpeed;
+        return strafeSpinAngle * strafeSpeedPerc;
     }
 }
